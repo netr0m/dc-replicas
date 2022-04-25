@@ -1,0 +1,14 @@
+version: "3.9"
+services:
+  api:
+    image: dc-replicas-api:latest
+    build: ./api
+    deploy:
+      mode: replicated
+      replicas: 4
+      endpoint_mode: dnsrr
+  nginx:
+    image: dc-replicas-proxy:latest
+    build: ./nginx
+    ports:
+      - 8080:80
